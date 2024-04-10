@@ -1,12 +1,17 @@
 package com.estudando.Zapella.entitites;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @Table(name = " tb_user")
@@ -20,6 +25,10 @@ public class User implements Serializable {
     private String phone;
     private String password;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new LinkedList<>();
+
     public User() {
     }
 
@@ -32,7 +41,7 @@ public class User implements Serializable {
     }
 
     public Long getId() {
-        return Id;
+        return this.Id;
     }
 
     public void setId(Long id) {
@@ -40,7 +49,11 @@ public class User implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return this.name;
+    }
+
+    public List<Order> getOrders() {
+        return this.orders;
     }
 
     public void setName(String name) {
@@ -48,7 +61,7 @@ public class User implements Serializable {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -56,7 +69,7 @@ public class User implements Serializable {
     }
 
     public String getPhone() {
-        return phone;
+        return this.phone;
     }
 
     public void setPhone(String phone) {
@@ -64,7 +77,7 @@ public class User implements Serializable {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
