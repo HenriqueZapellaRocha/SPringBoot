@@ -6,9 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.estudando.Zapella.entitites.Order;
 import com.estudando.Zapella.entitites.Product;
-import com.estudando.Zapella.repositories.OrderRepository;
 import com.estudando.Zapella.repositories.ProductRepository;
 
 @Service
