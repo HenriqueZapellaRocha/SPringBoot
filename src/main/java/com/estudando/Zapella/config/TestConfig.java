@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.estudando.Zapella.entitites.Category;
 import com.estudando.Zapella.entitites.Order;
+import com.estudando.Zapella.entitites.OrderItem;
 import com.estudando.Zapella.entitites.Product;
 import com.estudando.Zapella.entitites.User;
 import com.estudando.Zapella.entitites.enums.OrderStatus;
 import com.estudando.Zapella.repositories.CategoryRepository;
+import com.estudando.Zapella.repositories.OrderItemRepository;
 import com.estudando.Zapella.repositories.OrderRepository;
 import com.estudando.Zapella.repositories.ProductRepository;
 import com.estudando.Zapella.repositories.UserRepository;
@@ -29,7 +31,10 @@ public class TestConfig implements CommandLineRunner {
     private CategoryRepository categoryRepository;
     @Autowired
     private ProductRepository productRepository;
-   
+    @Autowired
+    private OrderItemRepository orderItemRepository;
+
+
     @Autowired
     public TestConfig(UserRepository userRepository, OrderRepository orderRepository) {
         this.userRepository = userRepository;
@@ -68,7 +73,16 @@ public class TestConfig implements CommandLineRunner {
         p4.getCategories().add(c3);
         p5.getCategories().add(c2);
 
+        
+
         productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+
+        OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+        OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+        OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+
+        orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
     }
 
     
